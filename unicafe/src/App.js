@@ -6,6 +6,15 @@ const Button = (props) => (
   </button>
 )
 
+const StatisticLine = ({name, value}) => {
+  return (
+    <tr>
+      <td>{name}</td>
+      <td>{value}</td>
+    </tr>
+  )
+}
+
 const Statistics = (props) => {
   const [good, neutral, bad] = props.data 
   if (props.data.reduce((a,b) => a + b,0) === 0) {
@@ -25,15 +34,17 @@ const Statistics = (props) => {
   return (
     <div>
       <h1>statistics</h1>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {all}</p>
-      <p>average {average}</p>
-      <p>positive {positive}</p>
+      <table>
+        <tbody>
+          <StatisticLine name="good" value={good} />
+          <StatisticLine name="neutral" value={neutral} />
+          <StatisticLine name="bad" value={bad} />
+          <StatisticLine name="average" value={average} />
+          <StatisticLine name="positive" value={positive} />
+        </tbody>
+      </table>
     </div>
   )
-  console.log(good, neutral, bad)
 }
 const App = () => {
   // save clicks of each button to its own state
