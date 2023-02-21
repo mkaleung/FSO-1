@@ -8,9 +8,19 @@ const Button = (props) => (
 
 const Statistics = (props) => {
   const [good, neutral, bad] = props.data 
+  if (props.data.reduce((a,b) => a + b,0) === 0) {
+    return (
+      <div>
+        <h1>statistics</h1>
+        <p>No feedback given</p>
+      </div>     
+    )
+  }
+  console.log(props.data)
+
   const all = good + neutral + bad
-  const average = (all === 0 ? 0 : (good - bad)/all)
-  const positive = (all === 0 ? "0 %" : (good/all)*100 + " %")
+  const average = ((good - bad)/all)
+  const positive = ((good/all)*100 + " %")
 
   return (
     <div>
